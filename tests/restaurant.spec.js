@@ -79,7 +79,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // TESTE 5: Verifique se, ao chamar uma função associada à chave `order` no objeto retornado,
     // passando uma string como parâmetro (como `objetoRetornado.order('coxinha')`), tal string é adicionada
     // ao array retornado em `objetoRetornado.consumption`.
-    const verifica = createMenu();
+    const verifica = createMenu({ food: {coxinha: 3.9, sopa: 9.9, sashimi: 5.0 }, drink: {agua: 3.9, cerveja: 6.9} });
     verifica.order('coxinha');
     expect(verifica.consumption).toEqual(['coxinha']);
     // ```
@@ -117,7 +117,9 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // Agora faça o TESTE 8 deste arquivo.
     // --------------------------------------------------------------------------------------
     // TESTE 8: Verifique se, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`
-    expect(createMenu().pay()).toBe();
+    verifica.fetchMenu();
+    verifica.pay();
+    expect(verifica.pay()).toBe();
     // ```
     // objetoRetornado.order('coxinha');
     // objetoRetornado.order('agua');
