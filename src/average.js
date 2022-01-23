@@ -27,6 +27,4 @@ const average = (array) => {
   return Math.round(resul / array.length);
 };
 
-console.log(average([]));
-
 module.exports = average;

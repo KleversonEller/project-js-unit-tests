@@ -117,9 +117,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // Agora faça o TESTE 8 deste arquivo.
     // --------------------------------------------------------------------------------------
     // TESTE 8: Verifique se, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`
-    verifica.fetchMenu();
-    verifica.pay();
-    expect(verifica.pay()).toBe();
+    expect(verifica.pay()).toBeCloseTo(37.84);
     // ```
     // objetoRetornado.order('coxinha');
     // objetoRetornado.order('agua');

@@ -79,42 +79,45 @@
 // que percorre por todos os itens de `objetoRetornado.consumption`, soma o preço deles e retorna o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
 
-const consuList = ['coxinha', 'sopa', 'agua', 'coxinha'];
-const funOrder = (valor) => consuList.push(valor);
+const consumoList = [];
+const funOrder = (valor) => consumoList.push(valor);
+
 const funPayFood = (meuMenu) => {
-  const menu = meuMenu;
-  const keys = Object.keys(menu.food);
-  const valores = Object.values(menu.food);
-  return keys.reduce((result, valor, index) => {
-    if (consuList.some((alimento) => valor === alimento)) {
-      return result + valores[index];
+  let resultado = 0;
+  const keysFood = Object.keys(meuMenu.food);
+  const valoresFood = Object.values(meuMenu.food);
+  resultado = keysFood.reduce((result, valor, index) => {
+    if (consumoList.filter((alimento) => valor === alimento).length > 0) {
+      return result + (valoresFood[index] * consumoList.filter((alimento) => 
+      valor === alimento).length);
     } 
       return result + 0;
   }, 0); 
+  return resultado + (resultado * 0.1);
 };
 
 const funPayDrink = (meuMenu) => {
-  const menu = meuMenu;
-  const keys = Object.keys(menu.drink);
-  const valores = Object.values(menu.drink);
-  return keys.reduce((result, valor, index) => {
-    if (consuList.some((alimento) => valor === alimento)) {
-      return result + valores[index];
+  let resultado = 0;
+  const keysDrink = Object.keys(meuMenu.drink);
+  const valoresDrink = Object.values(meuMenu.drink);
+  resultado = keysDrink.reduce((result, valor, index) => {
+    if (consumoList.filter((alimento) => valor === alimento).length > 0) {
+      return result + (valoresDrink[index] * consumoList.filter((alimento) => 
+      valor === alimento).length);
     } 
       return result + 0;
   }, 0); 
+  return resultado + (resultado * 0.1);
 };
 
 const createMenu = (objeto) => {
 const myMenu = {
   fetchMenu: () => objeto,
   order: funOrder,
-  consumption: consuList,
-  pay: funPayFood(objeto) + funPayDrink(objeto),
+  consumption: consumoList,
+  pay: () => (funPayFood(objeto) + funPayDrink(objeto)),
   };
   return myMenu;
 };
 
 module.exports = createMenu;
-
-console.log(funPayFood({ food: { coxinha: 3.9, sopa: 9.9 }, drink: { agua: 3.9, cerveja: 6.9 } })+funPayDrink({ food: { coxinha: 3.9, sopa: 9.9 }, drink: { agua: 3.9, cerveja: 6.9 } }));
